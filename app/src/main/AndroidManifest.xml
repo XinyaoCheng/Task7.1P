@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -13,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.71p"
         tools:targetApi="31">
-        <activity
-            android:name=".setLocation"
-            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -31,6 +30,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAW_aJx_81VWi7BzPW7cMDACFcv3AKJrgg" />
 
+        <activity
+            android:name=".ShowonMapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_showon_map" />
+        <activity
+            android:name=".setLocation"
+            android:exported="false" />
         <activity
             android:name=".MapsActivity"
             android:exported="false"

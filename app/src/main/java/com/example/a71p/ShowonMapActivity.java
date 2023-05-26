@@ -12,63 +12,34 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.a71p.databinding.ActivityMapsBinding;
+import com.example.a71p.databinding.ActivityShowonMapBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class ShowonMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+    private ActivityShowonMapBinding binding;
     Map<LatLng,String> map = new HashMap<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getLocations();
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+
+        binding = ActivityShowonMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
-
-
-
-
-    }
-
-    private void getLocations() {
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("items");
-        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for (DataSnapshot itemSnapshot:snapshot.getChildren()){
-
-                        Double la = (Double) itemSnapshot.child("la").getValue();
-                        Double lo = (Double) itemSnapshot.child("lo").getValue();
-                        String type = itemSnapshot.child("types").getValue().toString();
-                        Log.v("la",la.toString());
-                        LatLng latLng = new LatLng(la,lo);
-                        map.put(latLng,type);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     /**
@@ -84,15 +55,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-//        for (Map.Entry<LatLng,String> map:map.entrySet()){
-//
-//            Log.v("添加mark成功",map.getValue());
-//            mMap.addMarker(new MarkerOptions().position(map.getKey()).title(map.getValue()));
-//
-//        }
-        Log.v("标地图","成");
-        // Add a marker in Sydney and move the camera
-        LatLng deakin =new LatLng(-33.852, 151.211);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(deakin));
+        LatLng deakin =new LatLng(-37.8485125, 145.1071608);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(deakin, 15));
+        getLocations();
+
     }
+
+    private void getLocations() {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("items");
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot itemSnapshot:snapshot.getChildren()){
+
+                        Double la = (Double) itemSnapshot.child("la").getValue();
+                        Double lo = (Double) itemSnapshot.child("lo").getValue();
+                        String description = itemSnapshot.child("description").getValue().toString();
+                        Log.v("la",la.toString());
+                        LatLng latLng = new LatLng(la,lo);
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(description));
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 }

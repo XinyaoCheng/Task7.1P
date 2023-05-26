@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         show_in_map_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                startActivity(new Intent(MainActivity.this, ShowonMapActivity.class));
             }
         });
         create_button.setOnClickListener(new View.OnClickListener() {

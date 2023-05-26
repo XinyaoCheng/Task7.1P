@@ -41,7 +41,7 @@ public class RemoveItems extends AppCompatActivity {
         item_location.setText(getIntent().getStringExtra("item_location"));
 
         item_id = getIntent().getStringExtra("item_id");
-        Log.v("要删掉的id", item_id);
+        //Log.v("要删掉的id", item_id);
         remove_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +60,7 @@ public class RemoveItems extends AppCompatActivity {
                 itemRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.v("即将删除的是", snapshot.toString());
+                        //Log.v("即将删除的是", snapshot.toString());
                         snapshot.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

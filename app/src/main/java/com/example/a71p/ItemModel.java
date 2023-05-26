@@ -8,6 +8,8 @@ public class ItemModel {
     private String description;
     private String date;
     private String location;
+    private double la;
+    private double lo;
 
     public ItemModel(String item_id, String types, String name, String phone, String description, String date, String location) {
         this.item_id = item_id;
@@ -17,6 +19,34 @@ public class ItemModel {
         this.description = description;
         this.date = date;
         this.location = location;
+    }
+
+    public ItemModel(String item_id, String types, String name, String phone, String description, String date, String location, double la, double lo) {
+        this.item_id = item_id;
+        this.types = types;
+        this.name = name;
+        this.phone = phone;
+        this.description = description;
+        this.date = date;
+        this.location = location;
+        this.la = la;
+        this.lo = lo;
+    }
+
+    public double getLa() {
+        return la;
+    }
+
+    public void setLa(double la) {
+        this.la = la;
+    }
+
+    public double getLo() {
+        return lo;
+    }
+
+    public void setLo(double lo) {
+        this.lo = lo;
     }
 
     public String getItem_id() {

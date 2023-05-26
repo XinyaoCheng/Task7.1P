@@ -1,37 +1,26 @@
 {
   "project_info": {
-    "project_number": "936778320033",
-    "firebase_url": "https://sit305task7-default-rtdb.firebaseio.com",
-    "project_id": "sit305task7",
-    "storage_bucket": "sit305task7.appspot.com"
+    "project_number": "1004257494527",
+    "project_id": "task9lostandfound",
+    "storage_bucket": "task9lostandfound.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:936778320033:android:06e762c85e3475d38788e0",
+        "mobilesdk_app_id": "1:1004257494527:android:872a1c90f9ff9a090b13ca",
         "android_client_info": {
           "package_name": "com.example.a71p"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "936778320033-0i1ssftdce0ivuuvsakqh3l06ugc48e0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAlk39z9FCbjE8fBOC9C3AHc_ovVhJLPEY"
+          "current_key": "AIzaSyAW_aJx_81VWi7BzPW7cMDACFcv3AKJrgg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "936778320033-0i1ssftdce0ivuuvsakqh3l06ugc48e0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

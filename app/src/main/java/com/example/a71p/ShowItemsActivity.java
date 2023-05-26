@@ -32,8 +32,6 @@ public class ShowItemsActivity extends AppCompatActivity {
 
     FirebaseRecyclerAdapter itemAdapter;
     RecyclerView items_recycleView;
-    DatabaseReference firebaseRef;
-    ArrayList<ItemModel> item_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +53,7 @@ public class ShowItemsActivity extends AppCompatActivity {
                                         snapshot.child("date").getValue().toString(),
                                         snapshot.child("location").getValue().toString());
 
-                                Log.v("每一个item输出：", itemModel.toString());
+                                //Log.v("每一个item输出：", itemModel.toString());
 
                                 return itemModel;
                             }
@@ -74,12 +72,12 @@ public class ShowItemsActivity extends AppCompatActivity {
                         intent.putExtra("item_date",model.getDate());
                         intent.putExtra("item_location",model.getLocation());
                         intent.putExtra("item_id",model.getItem_id());
-                        Log.v("我倒要看看item id到底是多少",model.getItem_id());
                         startActivity(intent);
 
                     }
                 });
             }
+
 
 
             @NonNull
@@ -93,8 +91,6 @@ public class ShowItemsActivity extends AppCompatActivity {
         };
         items_recycleView.setLayoutManager(new GridLayoutManager(this,1));
         items_recycleView.setAdapter(itemAdapter);
-//        itemAdapter = new ItemAdapter(options);
-//        items_recycleView.setAdapter(itemAdapter);
 
 
 
@@ -135,6 +131,80 @@ class myViewHolder extends RecyclerView.ViewHolder{
     }
     public void setItemName(String name){
         item_name.setText(name);
-        Log.v("修改item的name成功",name);
+        //Log.v("修改item的name成功",name);
     }
 }
+//    @Override
+//    public void onBindViewHolder(@NonNull OrderAdapter.MyViewHolder holder, int position) {
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReference().child(orderList.get(position).getOrder_iamge_name());
+//        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                Log.v("get image from firebase",uri.toString());
+//                Picasso.get().load(uri).into(holder.order_image);
+//
+//            }
+//        });
+//
+//        Log.v("position",String.valueOf(position));
+//        //holder.order_image.setImageURI(orderList.get(position).getOrder_iamge_Uri());
+//        holder.order_title.setText(orderList.get(position).getGood_type());
+//        holder.order_desc.setText(orderList.get(position).toString());
+//
+//        //share button functionality
+//        String share_txt = orderList.get(position).toString();
+//        holder.share_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//                shareIntent.setType("text/plain");
+//                shareIntent.putExtra(Intent.EXTRA_TEXT,share_txt);
+//                context.startActivity(Intent.createChooser(shareIntent,"share with"));
+//            }
+//        });
+//
+//        //click card, bring user to order detail fragment
+//        OrderModel thisOrder = orderList.get(position);
+//        holder.order_item.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                OrderDetailFragment fragment = new OrderDetailFragment(thisOrder);
+//                FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.current_fragment, fragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
+//    }
+//my orders data:
+//        SharedPreferences sharedPreferences = getSharedPreferences("my_pref",MODE_PRIVATE);
+//        String login_name = sharedPreferences.getString("login_name","");
+//        Log.v("login name",login_name);
+//        my_order_list = new ArrayList<OrderModel>();
+//        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot orderSnapshot : snapshot.getChildren()){
+//                    OrderModel orderModel = new OrderModel(orderSnapshot.child("receiver_name").getValue().toString(),
+//                            orderSnapshot.child("sender_name").getValue().toString(),
+//                            orderSnapshot.child("pick_up_date").getValue().toString(),
+//                            orderSnapshot.child("pick_up_time").getValue().toString(),
+//                            orderSnapshot.child("drop_off_location").getValue().toString(),
+//                            orderSnapshot.child("good_type").getValue().toString(),
+//                            orderSnapshot.child("weight").getValue().toString(),
+//                            orderSnapshot.child("width").getValue().toString(),
+//                            orderSnapshot.child("length").getValue().toString(),
+//                            orderSnapshot.child("height").getValue().toString(),
+//                            orderSnapshot.child("vehicle_type").getValue().toString(),
+//                            orderSnapshot.child("order_iamge_name").getValue().toString(),
+//                            Boolean.getBoolean(orderSnapshot.child("finished").getValue().toString())
+//                    );
+//                    if(orderModel.getSender_name().equals(login_name)){
+//                        Log.v("my_order",orderModel.toString());
+//                        my_order_list.add(orderModel);
+//                    }
+//            }
+
+//            }
